@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h> // load pre-built functions involving stopwatch
 
-static int long numSteps = 100000;
+static int long numSteps = 1e9;
 int main() {
 	double pi = 0;
 	double time = 0;
@@ -18,7 +18,7 @@ int main() {
 //	printf("PI = %f \n",pi); // show value of pi only
 
 	clock_t end = clock(); // stop timing the operation
-	time = (double)(end - begin) / CLOCKS_PER_SEC; // convert time to sec
-	printf("PI = %f, duration: %f sec\n",pi,time);
+	time = (double)(end - begin) / CLOCKS_PER_SEC * 1e6; // convert time to ms
+	printf("PI = %f, duration: %f ms\n",pi,time);
 	return 0;
 }
