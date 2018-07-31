@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
   // process 0 is only 1 that needs global data
   double *globalData=NULL;
   if (procID == 0) {
-    globalData = (double *)malloc( numP * sizeof(double) );
+    globalData = (double *) malloc( numP * sizeof(double) );
     for (int i=0; i<numP; i++)
       globalData[i] = 0;
   }
