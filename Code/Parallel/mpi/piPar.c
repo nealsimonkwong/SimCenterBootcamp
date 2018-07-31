@@ -1,5 +1,6 @@
 #include <mpi.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h> // load pre-built functions involving stopwatch
 // #define LUMP 5
 
