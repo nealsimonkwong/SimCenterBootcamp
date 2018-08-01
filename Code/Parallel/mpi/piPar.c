@@ -28,7 +28,9 @@ int main(int argc, char **argv) {
 	  MPI_Comm_rank(MPI_COMM_WORLD, &procID);
 
 
-	for(int i=0; i<numSteps; i++) {
+	int iStart = (procID / numP) * numSteps;
+	int iEnd = ((procID+1) / numP) * numSteps;
+	for(int i=iStart; i<iEnd; i++) {
 		currFunc = 4.0/(1+x*x);
 		pi = pi + (currFunc*dx);
 		x += dx; // faster way of incrementing x
@@ -52,7 +54,7 @@ int main(int argc, char **argv) {
   }
 /*
   if (procID == 0)
-    free(globalData);
+    free(globalData); // delete pointer to globalData bc ...
 */
   MPI_Finalize();
 
