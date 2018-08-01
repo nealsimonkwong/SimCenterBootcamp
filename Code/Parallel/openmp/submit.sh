@@ -20,5 +20,5 @@
 export OMP_NUM_THREADS=16
 
 # Run the OpenMP application
-./main.exe
+./a.out
 
