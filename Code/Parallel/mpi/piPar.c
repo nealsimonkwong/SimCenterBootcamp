@@ -37,25 +37,28 @@ int main(int argc, char **argv) {
 	}
 
 
-  // process 0 is only 1 that needs global data
+  // process 0 is only one that needs global data
   double *globalData=NULL;
   if (procID == 0) {
     globalData = (double *) malloc( numP * sizeof(double) );
-    for (int i=0; i<numP; i++)
+    for (int i=0; i<numP; i++) {
       globalData[i] = 0;
+    }
   }
   
   MPI_Gather(&pi, 1, MPI_DOUBLE, globalData, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
   if (procID == 0) {
     double total = 0;	
-    for (int i=0; i<numP; i++)
+    for (int i=0; i<numP; i++) {
 	total += globalData[i];
+    }
   }
-/*
-  if (procID == 0)
-    free(globalData); // delete pointer to globalData bc ...
-*/
+
+  if (procID == 0) {
+    free(globalData); // delete pointer to globalData to free up memory for other tasks
+  }
+
   MPI_Finalize();
 
 
